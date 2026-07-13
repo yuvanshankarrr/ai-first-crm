@@ -2,12 +2,15 @@ from sqlalchemy.orm import Session
 
 from app.models.interaction import Interaction
 from app.schemas.interaction import InteractionCreate
+from app.services.ai_service import generate_summary
+
 
 
 def create_interaction(db: Session, interaction: InteractionCreate):
+    summary = generate_summary(interaction.notes)
     db_interaction = Interaction(
         **interaction.model_dump(),
-        summary=None
+        summary=summary
     )
 
     db.add(db_interaction)
