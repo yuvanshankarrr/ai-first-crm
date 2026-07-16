@@ -16,3 +16,7 @@ def create_hcp(db: Session, hcp: HCPCreate):
 
 def get_all_hcps(db: Session):
     return db.query(HCP).all()
+
+
+def get_hcp_by_id(db, hcp_id: int):
+    return db.query(HCP).filter(HCP.id == hcp_id).first()

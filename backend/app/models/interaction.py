@@ -20,8 +20,17 @@ class Interaction(Base):
 
     summary = Column(String)
 
+    next_action = Column(String)      # NEW
+
+    follow_up = Column(String)        # NEW
+
     follow_up_date = Column(Date)
 
     created_at = Column(DateTime, default=datetime.utcnow)
 
     hcp = relationship("HCP", back_populates="interactions")
+
+
+
+
+# import sqlite3 as sql

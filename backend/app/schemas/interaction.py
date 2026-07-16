@@ -1,6 +1,6 @@
 from datetime import date
 from typing import Optional
-
+from app.schemas.hcp import HCPResponse
 from pydantic import BaseModel
 
 
@@ -15,6 +15,9 @@ class InteractionCreate(BaseModel):
 class InteractionResponse(InteractionCreate):
     id: int
     summary: Optional[str] = None
+    next_action: Optional[str] = None
+    follow_up: Optional[str] = None
+    hcp: HCPResponse
 
     model_config = {
         "from_attributes": True
