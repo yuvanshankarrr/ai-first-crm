@@ -4,6 +4,7 @@ import HCPCard from "../components/HCPCard";
 
 function Dashboard() {
 
+    const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
 
     const [hcps, setHcps] = useState([]);
@@ -25,6 +26,8 @@ function Dashboard() {
             catch (error) {
 
                 console.error(error);
+                setError("Failed to load healthcare professionals.");
+                setLoading(false);
 
             }
 
@@ -36,6 +39,9 @@ function Dashboard() {
 
     if (loading) {
         return <h2>Loading...</h2>;
+}
+    if (error) {
+       return <h2>{error}</h2>;
 }
 
     return (

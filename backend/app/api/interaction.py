@@ -1,10 +1,12 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-
+from app.services.ai_service import edit_notes
 from app.database.connection import get_db
 from app.schemas.interaction import (
     InteractionCreate,
     InteractionResponse,
+    EditInteractionRequest,
+    EditInteractionResponse,
 )
 from app.services.interaction_service import (
     create_interaction,
@@ -30,3 +32,15 @@ def list_interactions(
     db: Session = Depends(get_db),
 ):
     return get_all_interactions(db)
+
+@router.post("/edit", response_model=EditInteractionResponse)
+def edit_interaction_notes(request: EditInteractionRequest):
+
+    updated = edit_notes(
+        request.notes,
+        request.instruction,
+    )
+
+    return {
+        "updated_notes": updated
+    }

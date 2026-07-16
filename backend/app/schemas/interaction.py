@@ -22,3 +22,11 @@ class InteractionResponse(InteractionCreate):
     model_config = {
         "from_attributes": True
     }
+
+class EditInteractionRequest(BaseModel):
+    notes: str
+    instruction: str
+
+
+class EditInteractionResponse(BaseModel):
+    updated_notes: str

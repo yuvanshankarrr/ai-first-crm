@@ -56,3 +56,24 @@ export async function getInteractions() {
 
     return await response.json();
 }
+
+export async function editInteraction(data) {
+
+    const response = await fetch(`${BASE_URL}/interactions/edit`, {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify(data),
+
+    });
+
+    if (!response.ok) {
+        throw new Error("Failed to edit notes");
+    }
+
+    return await response.json();
+}

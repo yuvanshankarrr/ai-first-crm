@@ -17,6 +17,17 @@ def analyze_interaction(notes: str) -> dict:
         }
 
 
+def edit_notes(notes: str, instruction: str) -> str:
+
+    result = crm_agent.invoke(
+        {
+            "task": "edit",
+            "notes": notes,
+            "instruction": instruction,
+        }
+    )
+
+    return result["updated_notes"]
 
 
 
